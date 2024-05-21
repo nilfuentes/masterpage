@@ -411,19 +411,29 @@ export class CreateWellComponent implements OnInit {
   "list 4", "list 5","list 6","list 6","list 8", "list 9"];
  
   // Completion lists
-  completionStringTypeList:string[]=["list 1","list 2","list 3", 
+  completionTypeList:string[]=["list 1","list 2","list 3", 
   "list 4", "list 5","list 6","list 6","list 8", "list 9"];
 
-  completionThreadList:string[]=["list 1","list 2","list 3", 
+  producedFluidList:string[]=["list 1","list 2","list 3", 
   "list 4", "list 5","list 6","list 6","list 8", "list 9"];
 
-  completionMaterialList:string[]=["list 1","list 2","list 3", 
+  injectedFluidList:string[]=["list 1","list 2","list 3", 
+  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+
+  completionClassList:string[]=["list 1","list 2","list 3", 
+  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+
+  sandControlType:string[]=["list 1","list 2","list 3", 
+  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+
+  rockTypeList:string[]=["list 1","list 2","list 3", 
+  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+
+
+  toolsCompanyList:string[]=["list 1","list 2","list 3", 
   "list 4", "list 5","list 6","list 6","list 8", "list 9"];
 
   pumpingCompanyList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
-
-  toolsCompanyList:string[]=["list 1","list 2","list 3", 
   "list 4", "list 5","list 6","list 6","list 8", "list 9"];
 
   screenProviderList:string[]=["list 1","list 2","list 3", 

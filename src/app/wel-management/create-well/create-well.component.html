@@ -214,6 +214,7 @@
         </mat-expansion-panel>
           <!----------------------------------COMPLETION DATA-------------------------------------->
           <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+
             <mat-expansion-panel-header>
               <mat-panel-title>4.Completion</mat-panel-title>
               <mat-panel-description>Basic data</mat-panel-description>
@@ -223,51 +224,82 @@
               <div *ngIf="!isCompletionFinished">
                 <mat-icon class="progress-icon">pending</mat-icon>
               </div>  
-            </mat-expansion-panel-header>            
+            </mat-expansion-panel-header>    
+
             <mat-form-field class="mat-form-field">
-              <mat-label># String</mat-label>
+              <mat-label>Completion #</mat-label>
               <input matInput>
             </mat-form-field>
+
             <mat-form-field class="mat-form-field">
-              <mat-label>String type</mat-label>
+              <mat-label>Type</mat-label>
               <mat-select>
-                <mat-option *ngFor="let completionStringItem of completionStringTypeList" [value]="completionStringItem">
-                  {{completionStringItem}}
+                <mat-option *ngFor="let completionTypeItem of completionTypeList" [value]="completionTypeItem">
+                  {{completionTypeItem}}
                 </mat-option>              
               </mat-select>
             </mat-form-field>
+
             <mat-form-field class="mat-form-field">
-              <mat-label>Size</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field class="mat-form-field">
-              <mat-label>Weight</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field class="mat-form-field">
-              <mat-label>Threads</mat-label>
+              <mat-label>Produced Fluid</mat-label>
               <mat-select>
-                <mat-option *ngFor="let completionThreadItem of completionThreadList" [value]="completionThreadItem">
-                  {{completionThreadItem}}
+                <mat-option *ngFor="let producedFluidItem of producedFluidList" [value]="producedFluidItem">
+                  {{producedFluidItem}}
                 </mat-option>              
               </mat-select>
             </mat-form-field>
+
             <mat-form-field class="mat-form-field">
-              <mat-label>Material</mat-label>
+              <mat-label>Injected Fluid</mat-label>
               <mat-select>
-                <mat-option *ngFor="let completionMaterialItem of materialList" [value]="completionMaterialItem">
-                  {{completionMaterialItem}}
-                </mat-option>             
+                <mat-option *ngFor="let injectedFluidItem of injectedFluidList" [value]="injectedFluidItem">
+                  {{injectedFluidItem}}
+                </mat-option>              
               </mat-select>
             </mat-form-field>
+
+            <mat-form-field class="mat-form-field">
+              <mat-label>Completion Class</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let completionClassItem of completionClassList" [value]="completionClassItem">
+                  {{completionClassItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field">
+              <mat-label>Sand Control</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let sandControlItem of sandControlType" [value]="sandControlItem">
+                  {{sandControlItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field">
+              <mat-label>Reservoir Rock Type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let rockTypeItem of rockTypeList" [value]="rockTypeItem">
+                  {{rockTypeItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field">
+              <mat-label>Reservoir Temperature</mat-label>
+              <input matInput>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field">
+              <mat-label>Corrosive Comp CCO2</mat-label>
+              <input matInput>
+            </mat-form-field>            
+            
             <mat-form-field class="mat-form-field"> 
-              <mat-label>MD Top</mat-label>
+              <mat-label>Corrosive Comp H25</mat-label>
               <input matInput>
             </mat-form-field>
-            <mat-form-field class="mat-form-field">
-              <mat-label>MD Bottom</mat-label>
-              <input matInput>
-            </mat-form-field>
+
             <div>
               <button (click)="SaveCompletionData()" mat-stroked-button class="save-button">Save</button>
               <button mat-stroked-button class="cancel-button">Cancel</button>
