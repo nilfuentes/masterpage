@@ -1,0 +1,23 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-toolbar{
+    background-color: blue;
+    color: white;
+}
+.mat-sidenav{
+    background-color: dimgrey;
+    width: 180px;
+}
+
+.mat-toolbar{
+    height: 60px;
+}
+
+.mat-icon{
+    color: white;
+}
+
+
+

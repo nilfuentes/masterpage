@@ -1,0 +1,16 @@
+<p>home works!</p>
+
+<h1>Working on autocomplete control</h1>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Color</mat-label>
+        <input matInput [matAutocomplete]="auto" [formControl]="formControl" />
+        <mat-autocomplete autoActiveFirstOption #auto>
+            <mat-option *ngFor="let item of filteredOptions | async" [value]="item">
+                {{item}}
+            </mat-option>
+   
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

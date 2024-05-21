@@ -1,0 +1,434 @@
+    <!----------------------------------CUSTOMER DATA-------------------------------------->
+    <div class="container">
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+          <mat-expansion-panel-header>            
+            <mat-panel-title>1.Well</mat-panel-title>
+            <mat-panel-description>Customer information</mat-panel-description>  
+            <div *ngIf="isCustomerFinished">            
+              <mat-icon class="check-icon">check_circle</mat-icon>
+            </div>
+            <div *ngIf="!isCustomerFinished">
+              <mat-icon class="progress-icon">pending</mat-icon>
+            </div>                     
+          </mat-expansion-panel-header>     
+          <mat-form-field class="mat-form-field">
+            <mat-label>Well Name</mat-label>
+            <input matInput [matAutocomplete]="well" [formControl]="wellFormControl"  />
+            <mat-autocomplete autoActiveFirstOption #well >
+              <mat-option *ngFor="let item of filteredWells | async" [value]="item.name" 
+                (onSelectionChange)="OnChangeWellEvent($event,item)">
+                {{item.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Well Type</mat-label>
+            <mat-select [formControl]="wellTypeFormControl" >
+              <mat-option *ngFor="let wellTypeItem of wellTypeList" [value]="wellTypeItem.name"
+               (onSelectionChange)="OnChangeWellTypeEvent($event,wellTypeItem)">
+                {{wellTypeItem.name}}
+              </mat-option>              
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field" style="width: 430px;">
+            <mat-label>Corporate Customer</mat-label>
+            <input matInput [matAutocomplete]="customer" [formControl]="customerFormControl" />
+            <mat-autocomplete autoActiveFirstOption #customer>
+              <mat-option *ngFor="let item of filteredCustomers | async" [value]="item.name"
+              (onSelectionChange)="OnChangeCustomerEvent($event,item)">
+                {{item.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field" style="width: 430px;">
+            <mat-label>Sales Account</mat-label>
+            <input matInput [matAutocomplete]="account" [formControl]="accountFormControl" />
+            <mat-autocomplete autoActiveFirstOption #account>
+              <mat-option *ngFor="let item of filteredAccounts | async" [value]="item.name"
+              (onSelectionChange)="OnChangeSalesAccountEvent($event,item)">
+                {{item.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Basin</mat-label>
+            <mat-select [formControl]="basinFormControl">
+              <mat-option #basin *ngFor="let basinItem of basinList" [value]="basinItem.name" 
+                (onSelectionChange)="OnChangeBasinEvent($event,basinItem)">
+                {{basinItem.name}}
+              </mat-option>             
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>GeoUnits</mat-label>
+            <mat-select [formControl]="geoUnitFormControl">
+              <mat-option *ngFor="let geoItem of geoUnitList" [value]="geoItem.name"
+              (onSelectionChange)="OnChangeBasinEvent($event,geoItem)">
+                {{geoItem.name}}
+              </mat-option>             
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Mgt Country</mat-label>
+            <mat-select [formControl]="countryFormControl">
+              <mat-option *ngFor="let countryItem of mgtCountryList" [value]="countryItem.name"
+              (onSelectionChange)="OnChangeMgtCountryEvent($event,countryItem)">
+                {{countryItem.name}}
+              </mat-option>            
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Field</mat-label>
+            <input matInput [matAutocomplete]="field" [formControl]="fieldFormControl" />
+            <mat-autocomplete autoActiveFirstOption #field>
+              <mat-option *ngFor="let item of filteredFields | async" [value]="item.name"
+              (onSelectionChange)="OnChangeSalesAccountEvent($event,item)">
+                {{item.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field" >
+            <mat-label>Enviroment</mat-label>
+            <mat-select [formControl]="enviromentFormControl">
+              <mat-option *ngFor="let enviromentItem of enviromentList" [value]="enviromentItem.name"
+              (onSelectionChange)="OnChangeEnviromentEvent($event,enviromentItem)" >
+                {{enviromentItem.name}}
+              </mat-option>             
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-stroked-button class="save-button" (click)="SaveCustomerData()">Save</button>
+            <button mat-stroked-button class="cancel-button" (click)="ClearCustomerData()">Cancel</button>
+          </div>
+        </mat-expansion-panel>
+         <!----------------------------------WELL DETAILED DATA-------------------------------------->
+         <mat-expansion-panel hideToggle="true" [expanded]="step === 1" (opened)="setStep(1)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>2.Well</mat-panel-title>
+            <mat-panel-description>Detailed data</mat-panel-description>  
+            <div *ngIf="isWellFinished">
+              <mat-icon class="check-icon">check_circle</mat-icon>
+            </div>
+            <div *ngIf="!isWellFinished">
+              <mat-icon class="progress-icon">arrow_circle_right</mat-icon>
+            </div>             
+          </mat-expansion-panel-header>         
+          <mat-form-field class="mat-form-field">
+            <mat-label>MD Measured from</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>TD Measured from</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>MD distance</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>TVD distance</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>MD units</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let mdUnitItem of mdUnitList" [value]="mdUnitItem"  >
+                {{mdUnitItem}}
+              </mat-option>             
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>TVD units</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let tvdUnitItem of tvdUnitList" [value]="tvdUnitItem">
+                {{tvdUnitItem}}
+              </mat-option>              
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button (click)="SaveWellDetailedData()" mat-stroked-button class="save-button">Save</button>
+            <button mat-stroked-button class="cancel-button">Cancel</button>
+          </div>
+        </mat-expansion-panel>
+         <!----------------------------------WELL STEM DATA-------------------------------------->
+         <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>3.Well</mat-panel-title>
+            <mat-panel-description>Stem data</mat-panel-description>  
+            <div *ngIf="isWellStemFinished">
+              <mat-icon class="check-icon">check_circle</mat-icon>
+            </div>
+            <div *ngIf="!isWellStemFinished">
+              <mat-icon class="progress-icon">pending</mat-icon>
+            </div> 
+          </mat-expansion-panel-header>          
+          <mat-form-field class="mat-form-field">
+            <mat-label># String</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>String type</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let stringTypeItem of stringTypeList" [value]="stringTypeItem">
+                {{stringTypeItem}}
+            </mat-option>  
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Size</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Weight</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Threads</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let threadItem of threadList" [value]="threadItem" >
+                {{threadItem}}
+              </mat-option>        
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>Material</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let materialItem of materialList" [value]="materialItem">
+                {{materialItem}}
+              </mat-option>        
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>MD Top</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field class="mat-form-field">
+            <mat-label>MD Bottom</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <div>
+            <button (click)="SaveWellStemData()" mat-stroked-button class="save-button">Save</button>
+            <button mat-stroked-button class="cancel-button">Cancel</button>
+          </div>
+        </mat-expansion-panel>
+          <!----------------------------------COMPLETION DATA-------------------------------------->
+          <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>4.Completion</mat-panel-title>
+              <mat-panel-description>Basic data</mat-panel-description>
+              <div *ngIf="isCompletionFinished">
+                <mat-icon class="check-icon">check_circle</mat-icon>
+              </div>
+              <div *ngIf="!isCompletionFinished">
+                <mat-icon class="progress-icon">pending</mat-icon>
+              </div>  
+            </mat-expansion-panel-header>            
+            <mat-form-field class="mat-form-field">
+              <mat-label># String</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>String type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let completionStringItem of completionStringTypeList" [value]="completionStringItem">
+                  {{completionStringItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Size</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Weight</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Threads</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let completionThreadItem of completionThreadList" [value]="completionThreadItem">
+                  {{completionThreadItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Material</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let completionMaterialItem of materialList" [value]="completionMaterialItem">
+                  {{completionMaterialItem}}
+                </mat-option>             
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field"> 
+              <mat-label>MD Top</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>MD Bottom</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <div>
+              <button (click)="SaveCompletionData()" mat-stroked-button class="save-button">Save</button>
+              <button mat-stroked-button class="cancel-button">Cancel</button>
+            </div>
+          </mat-expansion-panel>
+           <!----------------------------------COMPLETION DATA- SAND CONTROL AND PUMPING-------------------------------------->
+           <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle="true">
+            <mat-expansion-panel-header>              
+              <mat-panel-title>5.Completion </mat-panel-title>
+              <mat-panel-description>Sand Control and pumping</mat-panel-description>
+              <div *ngIf="isSandFinished">
+                <mat-icon class="check-icon">check_circle</mat-icon>
+              </div>
+              <div *ngIf="!isSandFinished">
+                <mat-icon class="progress-icon">pending</mat-icon>
+              </div>  
+            </mat-expansion-panel-header>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Pumping Company</mat-label>             
+              <mat-select>
+                <mat-option *ngFor="let pumpingCompanyItem of pumpingCompanyList" [value]="pumpingCompanyItem">
+                  {{pumpingCompanyItem}}
+                </mat-option>             
+              </mat-select>
+            </mat-form-field>        
+            <mat-form-field class="mat-form-field">
+              <mat-label>Tools Company</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let toolsCompanyItem of toolsCompanyList" [value]="toolsCompanyItem">
+                  {{toolsCompanyItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Screen Provider</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let screenProviderItem of screenProviderList" [value]="screenProviderItem">
+                  screenProviderItem
+                </mat-option>             
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Fluid Type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let fluidTypeItem of fluidTypeList" [value]="fluidTypeItem">
+                  {{fluidTypeItem}}
+                </mat-option>           
+              </mat-select>
+            </mat-form-field>        
+            <mat-form-field>
+              <mat-label>Design Pump Rate</mat-label>
+              <input matInput />
+            </mat-form-field>          
+            <div>
+              <button (click)="SaveSandControlData()" mat-stroked-button class="save-button">Save</button>
+              <button mat-stroked-button class="cancel-button">Cancel</button>
+            </div>
+          </mat-expansion-panel>
+           <!----------------------------------COMPLETION DATA- TOOLS AND SCREENS-------------------------------------->
+           <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>6.Completion</mat-panel-title>
+              <mat-panel-description>Tools and screens</mat-panel-description>
+              <div *ngIf="isToolsFinished">
+                <mat-icon class="check-icon">check_circle</mat-icon>
+              </div>
+              <div *ngIf="!isToolsFinished">
+                <mat-icon class="progress-icon">pending</mat-icon>
+              </div> 
+            </mat-expansion-panel-header>          
+            <mat-form-field class="mat-form-field">
+              <mat-label>Tools Type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let toolsTypeItem of toolsTypeList" [value]="toolsTypeItem">
+                  {{toolsTypeItem}}
+                </mat-option>              
+              </mat-select>
+            </mat-form-field>   
+            <mat-form-field class="mat-form-field">
+              <mat-label>Packer Bore Size</mat-label>
+              <input matInput />
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Differential</mat-label>
+              <input matInput />
+            </mat-form-field>
+            <mat-form-field class="mat-form-field">
+              <mat-label>Base Pipe OD</mat-label>
+              <input matInput />
+            </mat-form-field>        
+            <mat-form-field class="mat-form-field">
+              <mat-label>Filter Type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let filterTypeItem of filterTypeList" [value]="filterTypeItem">
+                  {{filterTypeItem}}
+                </mat-option>           
+              </mat-select>
+            </mat-form-field>        
+            <div>
+              <button (click)="SaveToolsData()" mat-stroked-button class="save-button">Save</button>
+              <button mat-stroked-button class="cancel-button">Cancel</button>
+            </div>
+          </mat-expansion-panel>
+           <!----------------------------------COMPLETION DATA: ICD, APS AND WELLBORE FLUID-------------------------------------->
+           <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>7.Completion</mat-panel-title>
+              <mat-panel-description>ICD, APS and fluids</mat-panel-description>
+              <div *ngIf="isICDFinished">
+                <mat-icon class="check-icon">check_circle</mat-icon>
+              </div>
+              <div *ngIf="!isICDFinished">
+                <mat-icon class="progress-icon">pending</mat-icon>
+              </div>      
+            </mat-expansion-panel-header>               
+            <mat-form-field class="mat-form-field">
+              <mat-label>Passive ICD</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>Autonomuous ICD</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>Adaptative ICD</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>APS - Tube Type</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let tubeTypeItem of tubeTypeList" [value]="tubeTypeItem">
+                  {{tubeTypeItem}}
+                </mat-option>                
+              </mat-select>
+            </mat-form-field>            
+            <mat-form-field class="mat-form-field">
+              <mat-label>APS - #Tubes</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>Drilling Fluid</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>OH Screen Running Fluid</mat-label>
+              <input matInput />
+            </mat-form-field> 
+            <mat-form-field class="mat-form-field">
+              <mat-label>CH Screen Running Fluid</mat-label>
+              <input matInput />
+            </mat-form-field>  
+            
+            <div>
+              <button (click)="SaveICDData()" mat-stroked-button class="save-button">Save</button>
+              <button mat-stroked-button class="cancel-button">Cancel</button>
+            </div>
+          </mat-expansion-panel>
+      </mat-accordion>
+    </div>    
+
+
+  
+   
+     
