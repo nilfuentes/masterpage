@@ -16,6 +16,32 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogViewComponent } from '../../dialog-view/dialog-view.component';
+import { MaxDeviation } from '../../models/max-deviation';
+import { MdUnit } from '../../models/md-unit';
+import { TvdUnit } from '../../models/tvd-unit';
+import { UppercompletionType } from '../../models/uppercompletion-type';
+import { ArtificialliftType } from '../../models/artificiallift-type';
+import { Multilateral } from '../../models/multilateral';
+import { LinerhangerSystem } from '../../models/linerhanger-system';
+import { MultistageSimulation } from '../../models/multistage-simulation';
+import { StringType } from '../../models/string-type';
+import { Thread } from '../../models/thread';
+import { Material } from '../../models/material';
+import { CompletionType } from '../../models/completion-type';
+import { ProducedfluidType } from '../../models/producedfluid-type';
+import { InjectedfluidType } from '../../models/injectedfluid-type';
+import { CompletionClass } from '../../models/completion-class';
+import { SandControl } from '../../models/sand-control';
+import { RockType } from '../../models/rock-type';
+import { ToolType } from '../../models/tool-type';
+import { ToolsCompany } from '../../models/tools-company';
+import { PumpingCompany } from '../../models/pumping-company';
+import { ScreenProvider } from '../../models/screen-provider';
+import { FluidType } from '../../models/fluid-type';
+import { FilterType } from '../../models/filter-type';
+import { TubeType } from '../../models/tube-type';
+import { ScreenType } from '../../models/screen-type';
+import { CompletionpulledReason } from '../../models/completionpulled-reason';
 
 
 @Component({
@@ -27,6 +53,11 @@ export class CreateWellComponent implements OnInit {
   
   @ViewChild(MatAccordion)
   accordion: MatAccordion = new MatAccordion;  
+
+  checked = false;
+  indeterminate = false;
+  labelPosition: 'before' | 'after' = 'after';
+  disabled = false;
   
   isCustomerFinished:boolean=false;
   isWellFinished:boolean=false;
@@ -394,66 +425,297 @@ export class CreateWellComponent implements OnInit {
     this.PopulateWellData();    
   }
   //Customer data lists
+ 
+  maxDeviationList:MaxDeviation[]=[
+    {id:1,name:"Vertical (0 - < 15)"},
+    {id:2,name:"Deviated (15 - < 60)"},
+    {id:3,name:"High Deviation (60 - < 90)"},
+    {id:4,name:"Horizontal (90 and above)"}  
+  ];
 
-  mdUnitList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  completionPulledReasonList:CompletionpulledReason[]=[
+    {id:1,name:"Equipment Failure"},
+    {id:2,name:"Sidetracking Well"},
+    {id:3,name:"Abandoning Well"},
+    {id:4,name:"Change ESP"},
+    {id:5,name:"Other"}   
+  ];
 
-  tvdUnitList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  mdUnitList:MdUnit[]=[
+    {id:1,name:"Ground Level"},
+    {id:2,name:"Mean Sea Level"},
+    {id:3,name:"Rig Kelly Bushing"},
+    {id:4,name:"Rotary Table"},
+    {id:5,name:"Seabed"},
+    {id:6,name:"Tubing Hanger"}  
+  ];
 
-  stringTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  tvdUnitList:TvdUnit[]=[
+    {id:1,name:"Ground Level"},
+    {id:2,name:"Mean Sea Level"},
+    {id:3,name:"Rig Kelly Bushing"},
+    {id:4,name:"Rotary Table"},
+    {id:5,name:"Seabed"},
+    {id:6,name:"Tubing Hanger"}  
+  ];
 
-  threadList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  upperCompletionList:UppercompletionType[]=[
+    {id:1,name:"Single String"},
+    {id:2,name:"Dual String"},
+    {id:3,name:"Monobore"},
+    {id:4,name:"Other"},
+    {id:5,name:"None"}    
+  ];
 
-  materialList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  artificialLiftList:ArtificialliftType[]=[
+    {id:1,name:"ESP"},
+    {id:2,name:"Gas Lift"},
+    {id:3,name:"PCP"},
+    {id:4,name:"Rod Pump"},
+    {id:5,name:"Other"},
+    {id:6,name:"None"}  
+  ];
+
+  multiLateralList:Multilateral[]=[
+    {id:1,name:"None"},
+    {id:2,name:"Stem + 1 Branch"},
+    {id:3,name:"Stem + 2 Branches"},
+    {id:4,name:"Stem + 3 Branches"},
+    {id:5,name:"Stem + 4 Branches"}
+    
+  ];
+
+  linerHangerSystemList:LinerhangerSystem[]=[
+    {id:1,name:"Cemented Liner"},
+    {id:2,name:"Uncemented Liner"},
+    {id:3,name:"Tieback to Surface"},
+    {id:4,name:"Scab Liner"},
+    {id:5,name:"Tieback Packer"},
+    {id:6,name:"Steam Injection/Thermalr"}  
+  ];
+  
+  multiStageSimulationList:MultistageSimulation[]=[
+    {id:1,name:"Cemented"},
+    {id:2,name:"Uncemented"},
+    {id:3,name:"None"}
+  ];
+
+  stringTypeList:StringType[]=[
+    {id:1,name:"Drilling Tieback"},
+    {id:2,name:"Production Casing"},
+    {id:3,name:"Production Liner"},
+    {id:4,name:"Production Tieback"},
+    {id:5,name:"Tubing"},
+    {id:6,name:"Short Dual Tubing"},
+    {id:7,name:"Open Hole"}
+  ];
+
+  threadList:Thread[]=[
+    {id:1,name:"AB TC-II"},
+    {id:2,name:"AMS-28"},
+    {id:3,name:"API BTC"},
+    {id:4,name:"API EUE"},
+    {id:5,name:"API FH"},
+    {id:6,name:"API IF"},
+    {id:7,name:"API NUE"},
+    {id:8,name:"API STC 8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC-6"},
+    {id:11,name:"BTC-8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTING FOX"}
+  ];
+
+  materialList:Material[]=[
+    {id:1,name:"Carbon Steel"},
+    {id:2,name:"9CR"},
+    {id:3,name:"13CR"},
+    {id:4,name:"22CR"},
+    {id:5,name:"25CR"},
+    {id:6,name:"Other"}  
+  ];
  
   // Completion lists
-  completionTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  completionTypeList:CompletionType[]=[
+    {id:1,name:"Producer"},
+    {id:2,name:"Injector"},
+    {id:3,name:"Cyclic"},
+    {id:4,name:"Observation"},
+    {id:5,name:"Disposal"}    
+  ];
 
-  producedFluidList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  producedFluidList:ProducedfluidType[]=[
+    {id:1,name:"Oil"},
+    {id:2,name:"Gas"},
+    {id:3,name:"Gas Condensate"},
+    {id:4,name:"Water"},
+    {id:5,name:"Other"}   
+  ];
 
-  injectedFluidList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  injectedFluidList:InjectedfluidType[]=[
+    {id:1,name:"Gas"},
+    {id:2,name:"Water"},
+    {id:3,name:"CO2"},
+    {id:4,name:"Steam"},
+    {id:5,name:"Water Alternating Gas"},
+    {id:6,name:"Other"}
+  ];
 
-  completionClassList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  completionClassList:CompletionClass[]=[
+    {id:1,name:"Cased & Perfd"},
+    {id:2,name:"Slotter Liner"},
+    {id:3,name:"Open Hole"},
+    {id:4,name:"Sliding Sleeves"}    
+  ];
 
-  sandControlType:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  sandControlType:SandControl[]=[
+    {id:1,name:"Gravel Pack"},
+    {id:2,name:"Stimpack"},
+    {id:3,name:"High Rate Water Pack"},
+    {id:4,name:"Standalone Screens"},
+    {id:5,name:"Expendables"},
+    {id:6,name:"Other"}   
+  ];
 
-  rockTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  rockTypeList:RockType[]=[    
+    {id:1,name:"SandStone"},
+    {id:2,name:"Carbonate"},
+    {id:3,name:"Coal Bed Methane"},
+    {id:4,name:"Fractured Basement"},
+    {id:5,name:"Tar Sand"},
+    {id:6,name:"Shale"}    
+  ];
 
 
-  toolsCompanyList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  toolsCompanyList:ToolsCompany[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  pumpingCompanyList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  pumpingCompanyList:PumpingCompany[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  screenProviderList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  screenProviderList:ScreenProvider[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  fluidTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  fluidTypeList:FluidType[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  screenToolsTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  screenToolsTypeList:ScreenType[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  toolsTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  toolsTypeList:ToolType[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  filterTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  filterTypeList:FilterType[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
-  tubeTypeList:string[]=["list 1","list 2","list 3", 
-  "list 4", "list 5","list 6","list 6","list 8", "list 9"];
+  tubeTypeList:TubeType[]=[
+    {id:1,name:"ABTC"},
+    {id:2,name:"AMS28"},
+    {id:3,name:"APIBTC"},
+    {id:4,name:"APIEUE"},
+    {id:5,name:"APIFH"},
+    {id:6,name:"APIIF"},
+    {id:7,name:"APINUE"},
+    {id:8,name:"APISTC8RD"},
+    {id:9,name:"BTC"},
+    {id:10,name:"BTC6"},
+    {id:11,name:"BTC8"},
+    {id:12,name:"BUTTWELD"},
+    {id:13,name:"HUNTINGFOX"}
+  ];
 
+  sandControlFlag=false;
   step = 0;
   
   filteredCustomers!:Observable<Customer[]>;
@@ -461,6 +723,7 @@ export class CreateWellComponent implements OnInit {
   filteredAccounts!:Observable<SalesAccount[]>;
   filteredFields!:Observable<Field[]>;
 
+// Customer Data Form Controls
   wellFormControl=new FormControl('');  
   wellTypeFormControl=new FormControl('');
   customerFormControl=new FormControl('');    
@@ -470,6 +733,48 @@ export class CreateWellComponent implements OnInit {
   fieldFormControl=new FormControl('');
   geoUnitFormControl=new FormControl('');
   enviromentFormControl=new FormControl('');
+  //Well Data Form Controls
+  waterDepthFormControl=new FormControl('');
+  maxDeviationFormControl=new FormControl('');
+  mdMeasuredFormControl=new FormControl('');
+  tvdMeasuredFormControl=new FormControl('');
+  mdDistanceFormControl=new FormControl('');
+  tvdDistanceFormControl=new FormControl('');
+  mdUnitsFormControl=new FormControl('');
+  tvdUnitsFormControl=new FormControl('');
+  upperCompletionFormControl=new FormControl('');
+  artificalLiftFormControl=new FormControl('');
+  multiLateralFormControl=new FormControl('');
+  linerHangerFormControl=new FormControl('');
+  multiStageFormControl=new FormControl('');
+  //Well Stem Form Controls
+  stringNumberFormControl=new FormControl('');
+  stringTypeFormControl=new FormControl('');
+  stemSizeFormControl=new FormControl('');
+  stemWeightFormControl=new FormControl('');
+  stemThreadFormControl=new FormControl('');
+  stemMaterialFormControl=new FormControl('');
+  stemMDTopFormControl=new FormControl('');
+  stemMDBottomFormControl=new FormControl('');
+  //Completion History Form Controls
+  initialCompletionFormControl=new FormControl('');
+  completionPulledFormControl=new FormControl('');
+  ipmWellFormControl=new FormControl('');
+  linerHangerInstallFormControl=new FormControl('');
+  completionPulledDate=new FormControl('');
+  pulledReasonFormControl=new FormControl('');
+  equipmentValidatedFormControl=new FormControl('');
+  //Completion Data Form Control
+  completionNumberFormControl=new FormControl('');
+  completionTypeFormControl=new FormControl('');
+  producedFluidTypeFormControl=new FormControl('');
+  injectedfluidTypeFormControl=new FormControl('');
+  completionClassFormControl=new FormControl('');
+  sandControlFormControl=new FormControl('');
+  rockTypeFormControl=new FormControl('');
+  reservoirTempFormControl=new FormControl('');
+  corrosiveCCO2FormControl=new FormControl('');
+  corrosiveH25FormControl=new FormControl('');
  
 
   ngOnInit(): void {      
@@ -522,11 +827,9 @@ export class CreateWellComponent implements OnInit {
   setStep(index: number) {
     this.step = index;
   }
-
   nextStep() {
     this.step++;
   }
-
   prevStep() {
     this.step--;
   }
@@ -559,7 +862,9 @@ export class CreateWellComponent implements OnInit {
   }
 
   public SaveCustomerData(){    
-    /*
+
+    this.well.name=this.wellFormControl.value??''    
+    
     alert(' well: ' + this.well.name + 
           ' welltype: ' + this.well.type.name +
           ' customer: ' + this.well.customer.name +
@@ -570,7 +875,7 @@ export class CreateWellComponent implements OnInit {
           ' field: ' + this.well.field.name +
           ' enviroment: ' + this.well.enviroment.name           
           );
-          */          
+                  
    
     this.trackRecord.well=this.well;    
     this.SendPopupNotification('The Trackrecord '+ this.trackRecord.id +' has been created');
@@ -578,11 +883,17 @@ export class CreateWellComponent implements OnInit {
     //this.router.navigate(['/record-list']);    
     this.isCustomerFinished=true; 
     this.nextStep();
-  }
+  }  
 
-  public SaveWellDetailedData(){
+  public SaveWellDetailedData(){  
+    this.well.waterDepth= parseInt(this.waterDepthFormControl.value??'',0);
+    
+    
+    alert('water depth: '+this.well.waterDepth);
+
     this.SendPopupNotification('The Well detailed data has been added to the record: '
           + this.trackRecord.id);     
+
     this.isWellFinished=true; 
     this.nextStep();
   }

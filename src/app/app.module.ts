@@ -31,6 +31,9 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 import {MatTableModule} from '@angular/material/table';
 import { DialogViewComponent } from './dialog-view/dialog-view.component';
@@ -71,7 +74,9 @@ import { RecordListComponent } from './record-list/record-list.component';
     MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule,
+    MatCheckboxModule
     
     
   ],
