@@ -874,8 +874,7 @@ export class CreateWellComponent implements OnInit {
           ' country: ' + this.well.mgtCountry.name +
           ' field: ' + this.well.field.name +
           ' enviroment: ' + this.well.enviroment.name           
-          );
-                  
+          );                  
    
     this.trackRecord.well=this.well;    
     this.SendPopupNotification('The Trackrecord '+ this.trackRecord.id +' has been created');
@@ -887,9 +886,26 @@ export class CreateWellComponent implements OnInit {
 
   public SaveWellDetailedData(){  
     this.well.waterDepth= parseInt(this.waterDepthFormControl.value??'',0);
-    
-    
-    alert('water depth: '+this.well.waterDepth);
+    this.well.mdMeasuredFrom=parseInt(this.mdMeasuredFormControl.value??'',0);
+    this.well.tvdMeasuredFrom=parseInt(this.tvdMeasuredFormControl.value??'',0);
+    this.well.mdDistance=parseInt(this.mdDistanceFormControl.value??'',0);
+    this.well.tvdDistance=parseInt(this.tvdDistanceFormControl.value??'',0);
+    /*
+    alert(' Water depth: ' + this.well.waterDepth + 
+    ' Max deviation: ' + this.well.maxDeviation.name +
+    ' Md meassured from: ' + this.well.mdMeasuredFrom +
+    ' tvd meassured from: ' + this.well.tvdMeasuredFrom +
+    ' md distance: ' + this.well.mdDistance +
+    ' tvd distance: ' + this.well.tvdDistance +
+    ' md units: ' + this.well.mdUnits.name +
+    ' tvd units: ' + this.well.tvdUnits.name +
+    ' upper completion: ' + this.well.upperCompletion.name + 
+    ' Artificial lift: ' + this.well.artificialLift.name +
+    ' Multi-lateral: ' + this.well.multiLateral.name +
+    ' Liner hanger system: ' + this.well.linerHanger.name +
+    ' Multistage simulation: ' + this.well.multiStage.name    
+    );     
+    */
 
     this.SendPopupNotification('The Well detailed data has been added to the record: '
           + this.trackRecord.id);     
@@ -899,13 +915,24 @@ export class CreateWellComponent implements OnInit {
   }
 
   public SaveWellStemData(){
+    this.well.stem.stringNumber=parseInt(this.stringNumberFormControl.value??'',0);
+    this.well.stem.size=parseInt(this.stemSizeFormControl.value??'',0);
+    this.well.stem.weight=parseInt(this.stemWeightFormControl.value??'',0);
+    this.well.stem.mdTop=parseInt(this.stemMDTopFormControl.value??'');
+    this.well.stem.mdBottom=parseInt(this.stemMDBottomFormControl.value??'');    
+
     this.SendPopupNotification('The Well stem data has been added to the record: '
-          + this.trackRecord.id);    
+                                + this.trackRecord.id);    
     this.isWellStemFinished=true; 
     this.nextStep();
   }
 
   public SaveCompletionData(){
+    this.well.completion.number=parseInt(this.completionNumberFormControl.value??'',0);
+    this.well.completion.reservoirTemperature=parseInt(this.reservoirTempFormControl.value??'',0);
+    this.well.completion.corrosiveCCO2=parseInt(this.corrosiveCCO2FormControl.value??'',0);
+    this.well.completion.corrosiveH25=parseInt(this.corrosiveH25FormControl.value??'',0);
+
     this.SendPopupNotification('The Completion data has been added to the record: '
           + this.trackRecord.id); 
     this.isCompletionFinished=true; 
@@ -938,7 +965,7 @@ export class CreateWellComponent implements OnInit {
       data:{
         message:message
       }
-    }     
+    }   
   );
   }
 
@@ -990,5 +1017,72 @@ export class CreateWellComponent implements OnInit {
     if(event.source.selected==true)
       this.well.enviroment=enviroment;     
   }
-
+  public OnChangeMaxDeviationEvent(event:MatOptionSelectionChange ,maxDeviation:MaxDeviation){
+    if(event.source.selected==true)
+      this.well.maxDeviation=maxDeviation;     
+  }
+  public OnChangeMDUnitEvent(event:MatOptionSelectionChange ,mdUnit:MdUnit){
+    if(event.source.selected==true)
+      this.well.mdUnits=mdUnit;     
+  }
+  public OnChangeTVDUnitEvent(event:MatOptionSelectionChange ,tvdUnit:TvdUnit){
+    if(event.source.selected==true)
+      this.well.tvdUnits=tvdUnit;     
+  }
+  public OnChangeUpperCompletionEvent(event:MatOptionSelectionChange ,upperCompletion:UppercompletionType){
+    if(event.source.selected==true)
+      this.well.upperCompletion=upperCompletion;     
+  }
+  public OnChangeArtificialLiftEvent(event:MatOptionSelectionChange ,artificialLift:ArtificialliftType){
+    if(event.source.selected==true)
+      this.well.artificialLift=artificialLift;     
+  }
+  public OnChangeMultiLateralEvent(event:MatOptionSelectionChange ,multiLateral:Multilateral){
+    if(event.source.selected==true)
+      this.well.multiLateral=multiLateral;     
+  }
+  public OnChangeLinerHangerEvent(event:MatOptionSelectionChange ,linerHanger:LinerhangerSystem){
+    if(event.source.selected==true)
+      this.well.linerHanger=linerHanger;     
+  }
+  public OnChangeMultiStageEvent(event:MatOptionSelectionChange ,multiStage:MultistageSimulation){
+    if(event.source.selected==true)
+      this.well.multiStage=multiStage;     
+  }
+  public OnChangeStringTypetEvent(event:MatOptionSelectionChange ,stringType:StringType){
+    if(event.source.selected==true)
+      this.well.stem.stringType=stringType;     
+  }
+  public OnChangeThreadEvent(event:MatOptionSelectionChange ,thread:Thread){
+    if(event.source.selected==true)
+      this.well.stem.threads=thread;     
+  }
+  public OnChangeStemMaterialEvent(event:MatOptionSelectionChange ,material:Material){
+    if(event.source.selected==true)
+      this.well.stem.material=material;     
+  }
+  public OnChangeCompletionTypeEvent(event:MatOptionSelectionChange ,type:CompletionType){
+    if(event.source.selected==true)
+      this.well.completion.type=type;     
+  }
+  public OnChangeProducedFluidEvent(event:MatOptionSelectionChange ,producedFluid:ProducedfluidType){
+    if(event.source.selected==true)
+      this.well.completion.producedFluid=producedFluid;     
+  }
+  public OnChangeInjectedFluidEvent(event:MatOptionSelectionChange ,injectedFluid:InjectedfluidType){
+    if(event.source.selected==true)
+      this.well.completion.injectedFluid=injectedFluid;     
+  }
+  public OnChangeCompletionClassEvent(event:MatOptionSelectionChange ,completionClass:CompletionClass){
+    if(event.source.selected==true)
+      this.well.completion.completionClass=completionClass;     
+  }
+  public OnChangeSandControl(event:MatOptionSelectionChange ,sandControl:SandControl){
+    if(event.source.selected==true)
+      this.well.completion.sandControl=sandControl;     
+  }
+  public OnChangeRockTypeEvent(event:MatOptionSelectionChange ,rockType:InjectedfluidType){
+    if(event.source.selected==true)
+      this.well.completion.reservoirRockType=rockType;     
+  }
 }
