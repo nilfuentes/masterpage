@@ -55,5 +55,16 @@
   .example-margin {
     margin: 0 10px;
   }
+  .mat-column {
+    width: 32px;
+    text-align: center;
+    font-size: large;
+  }
+  .mat-column-catalog-node {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
 
 
