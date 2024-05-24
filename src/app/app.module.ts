@@ -40,6 +40,7 @@ import {MatTableModule} from '@angular/material/table';
 import { DialogViewComponent } from './dialog-view/dialog-view.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { EquipmentComponent } from './equipment/equipment.component';
+import { EquipmentInstalledComponent } from './equipment-installed/equipment-installed.component';
 
 
 
@@ -51,7 +52,8 @@ import { EquipmentComponent } from './equipment/equipment.component';
     TrackRecordComponent,
     DialogViewComponent,
     RecordListComponent,
-    EquipmentComponent
+    EquipmentComponent,
+    EquipmentInstalledComponent
     
   ],
   imports: [
