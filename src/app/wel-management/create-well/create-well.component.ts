@@ -864,7 +864,7 @@ export class CreateWellComponent implements OnInit {
   public SaveCustomerData(){    
 
     this.well.name=this.wellFormControl.value??''    
-    
+    /*
     alert(' well: ' + this.well.name + 
           ' welltype: ' + this.well.type.name +
           ' customer: ' + this.well.customer.name +
@@ -874,7 +874,8 @@ export class CreateWellComponent implements OnInit {
           ' country: ' + this.well.mgtCountry.name +
           ' field: ' + this.well.field.name +
           ' enviroment: ' + this.well.enviroment.name           
-          );                  
+          );
+    */                  
    
     this.trackRecord.well=this.well;    
     this.SendPopupNotification('The Trackrecord '+ this.trackRecord.id +' has been created');

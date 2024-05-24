@@ -33,11 +33,13 @@ import {
 } from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {  MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import {MatTableModule} from '@angular/material/table';
 import { DialogViewComponent } from './dialog-view/dialog-view.component';
 import { RecordListComponent } from './record-list/record-list.component';
+import { EquipmentComponent } from './equipment/equipment.component';
 
 
 
@@ -48,7 +50,8 @@ import { RecordListComponent } from './record-list/record-list.component';
     CreateWellComponent,
     TrackRecordComponent,
     DialogViewComponent,
-    RecordListComponent
+    RecordListComponent,
+    EquipmentComponent
     
   ],
   imports: [
@@ -76,7 +79,8 @@ import { RecordListComponent } from './record-list/record-list.component';
     MatDialogTitle,
     MatTableModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule
     
     
   ],

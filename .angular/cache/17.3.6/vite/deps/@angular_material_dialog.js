@@ -4,8 +4,7 @@ import {
   OverlayContainer,
   OverlayModule,
   OverlayRef
-} from "./chunk-X4PA4NHJ.js";
-import "./chunk-SZINAQ34.js";
+} from "./chunk-U2IPIUPU.js";
 import {
   BasePortalOutlet,
   CdkPortalOutlet,
@@ -13,6 +12,7 @@ import {
   PortalModule,
   TemplatePortal
 } from "./chunk-U23KT6YR.js";
+import "./chunk-SZINAQ34.js";
 import "./chunk-GIAY44BW.js";
 import {
   animate,
