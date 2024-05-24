@@ -19,9 +19,8 @@ export class EquipmentComponent implements OnInit{
   table!: MatTable<SurfaceRunningEquipment>; 
 
   well:Well=new Well(0,'');
-
-    //List
-    surfaceCatalogNodeList:CatalogNode[]=[
+    
+  surfaceCatalogNodeList:CatalogNode[]=[
       {id:1, name:" Acquisition  and  Comm Cards-Gauge Acquisition Units-Arconn"},
       {id:2, name:" Acquisition  and  Comm Cards-Gauge Acquisition Units-Soloconn"},
       {id:3, name:" Acquisition  and  Comm Cards-Gauge Acquisition Units-Uniconn"},
@@ -1166,30 +1165,15 @@ export class EquipmentComponent implements OnInit{
   surfaceEquipmentList:SurfaceRunningEquipment[]=[    
   ];  
 
+  columns:string[]=['Product-Number','Catalog-Node','Serial','Quantity', 'Is Key Component','Action'];
+
   //Form Controls
   surfaceProductNumberFormControl=new FormControl('');
   surfaceCatalogNodeFormControl=new FormControl('');
   surfaceDescriptionFormControl=new FormControl('');
   surfaceSerialFormControl=new FormControl('');
   surfaceQuantityFormControl=new FormControl('');
-  surfaceKeyComponentFormControl=new FormControl('');
-  equipmentListFormControl=new FormControl('');
-
-  
-
-  columns:string[]=['Product-Number','Catalog-Node','Serial','Quantity', 'Is Key Component','Action'];
-
-  setStep(index: number) {
-    this.step = index;
-  }
-  nextStep() {
-    this.step++;
-  }
-  prevStep() {
-    this.step--;
-  }
-
-  isSurfaceKeyComponent=false; 
+  surfaceKeyComponentFormControl=new FormControl(''); 
 
   public constructor(private dialogRef:MatDialog){}
 
@@ -1197,6 +1181,10 @@ export class EquipmentComponent implements OnInit{
     this.filteredCatalogNodes=this.surfaceCatalogNodeFormControl.valueChanges.pipe(
       startWith(''), map(value => this.GetFilteredCatalogNodes(value||'')));
   } 
+
+  setStep(index: number) {this.step = index;}
+  nextStep() {this.step++;}
+  prevStep() {this.step--;}  
 
   private GetFilteredCatalogNodes(filter:string):CatalogNode[]{
     let searchValue=filter.toLocaleLowerCase();    
@@ -1206,28 +1194,44 @@ export class EquipmentComponent implements OnInit{
 
   //Event methods
   onChangeCatalogNodeEvent(event:MatOptionSelectionChange, CatalogNode:CatalogNode ){
-    if(event.source.selected==true){ 
-           
+    if(event.source.selected==true){            
     }
   }
   //Save Events
 
   SaveSurfaceEquipmentEvent(){
-    let surfaceEquipment:SurfaceRunningEquipment=new SurfaceRunningEquipment();
-    surfaceEquipment.productNumber=parseInt(this.surfaceProductNumberFormControl.value??'',0);
-    surfaceEquipment.catalogNode.name=this.surfaceCatalogNodeFormControl.value??'';
-    surfaceEquipment.serial=parseInt(this.surfaceSerialFormControl.value??'',0);
-    surfaceEquipment.quantity=parseInt(this.surfaceQuantityFormControl.value??'',0);
+    let index=this.surfaceEquipmentList.findIndex(
+      e => e.serial==parseInt(this.surfaceSerialFormControl.value??''));  
 
-    this.surfaceEquipmentList.push(surfaceEquipment);
-    this.table.renderRows();
-    this.SendPopupNotification('The Well stem data has been added to the record: '
-                               );    
+    if(index!==-1){
+      this.surfaceEquipmentList[index].productNumber=
+                parseInt(this.surfaceProductNumberFormControl.value??'',0);
+      this.surfaceEquipmentList[index].catalogNode.name=
+                this.surfaceCatalogNodeFormControl.value??'';
+      this.surfaceEquipmentList[index].description=
+                this.surfaceDescriptionFormControl.value??'';      
+      this.surfaceEquipmentList[index].quantity=
+                parseInt(this.surfaceQuantityFormControl.value??'',0);
+
+      this.SendPopupNotification('The equipmnet has been updated'); 
+    }   
+    else{
+      let surfaceEquipment:SurfaceRunningEquipment=new SurfaceRunningEquipment();
+      surfaceEquipment.productNumber=parseInt(this.surfaceProductNumberFormControl.value??'',0);
+      surfaceEquipment.catalogNode.name=this.surfaceCatalogNodeFormControl.value??'';
+      surfaceEquipment.description=this.surfaceDescriptionFormControl.value??'';
+      surfaceEquipment.serial=parseInt(this.surfaceSerialFormControl.value??'',0);
+      surfaceEquipment.quantity=parseInt(this.surfaceQuantityFormControl.value??'',0);
+  
+      this.surfaceEquipmentList.push(surfaceEquipment);      
+      this.SendPopupNotification('The Well stem data has been added to the record: '                             );        
+      
+    }
     this.isSurfaceEquipmentFinished=true;   
-    this.ClearSurfaceEquipmentEvent(); 
-
+      this.ClearSurfaceEquipmentEvent(); 
+      this.table.renderRows();
   }
-  //Clear Events
+
   ClearSurfaceEquipmentEvent(){
     this.surfaceCatalogNodeFormControl.setValue('');
     this.surfaceProductNumberFormControl.setValue('');
@@ -1236,32 +1240,24 @@ export class EquipmentComponent implements OnInit{
     this.surfaceDescriptionFormControl.setValue('');  
   }
 
+  EditSurfaceEquipment(productNumber:number){   
+    let equipment:SurfaceRunningEquipment;
+    
+    equipment=this.surfaceEquipmentList.find
+    (b => b.productNumber===productNumber)??new SurfaceRunningEquipment();  
+
+    this.surfaceProductNumberFormControl.setValue(equipment.productNumber.toString());
+    this.surfaceCatalogNodeFormControl.setValue(equipment.catalogNode.name);
+    this.surfaceDescriptionFormControl.setValue(equipment.description);
+    this.surfaceSerialFormControl.setValue(equipment.serial.toString());
+    this.surfaceQuantityFormControl.setValue(equipment.quantity.toString());   
+  }
+
   private SendPopupNotification(message:string){
     this.dialogRef.open(DialogViewComponent,{
       data:{
         message:message
       }
-    }   
-  );
+    });
   }
-  /*
-  surfaceEquipmentList:SurfaceRunningEquipment[]=[
-    {productNumber:1223,
-    catalogNode:new CatalogNode(1,'Equipment 1'),
-    serial:123445,
-    quantity:34,
-    description:'description 1',
-    isKeyComponent:false
-    }
-  ]
-  */
-  
-
-  // table code
- 
-
- 
-  
-
-
 }

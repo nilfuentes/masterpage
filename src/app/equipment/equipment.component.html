@@ -54,11 +54,7 @@
             <div>
                 <button mat-stroked-button class="save-button" (click)="SaveSurfaceEquipmentEvent()">Save</button>
                 <button mat-stroked-button class="cancel-button" (click)="ClearSurfaceEquipmentEvent()">Cancel</button>
-
             </div>
-
-
-
         </mat-expansion-panel>
 
         <div *ngIf="surfaceEquipmentList.length>0">
@@ -93,7 +89,7 @@
                     <ng-container matColumnDef="Action">
                         <th mat-header-cell *matHeaderCellDef>Action</th>
                         <td style="width: 150px;" mat-cell *matCellDef="let element">
-                            <button mat-icon-button>
+                            <button mat-icon-button (click)="EditSurfaceEquipment(element.productNumber)">
                                 <mat-icon color="primary">edit</mat-icon>
                             </button>
                             <button mat-icon-button>
