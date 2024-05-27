@@ -41,6 +41,7 @@ import { DialogViewComponent } from './dialog-view/dialog-view.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { EquipmentInstalledComponent } from './equipment-installed/equipment-installed.component';
+import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 
 
 
@@ -53,7 +54,8 @@ import { EquipmentInstalledComponent } from './equipment-installed/equipment-ins
     DialogViewComponent,
     RecordListComponent,
     EquipmentComponent,
-    EquipmentInstalledComponent
+    EquipmentInstalledComponent,
+    SidenavMenuComponent
     
   ],
   imports: [
