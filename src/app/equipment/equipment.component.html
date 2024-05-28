@@ -14,7 +14,7 @@
                 </div>
 
             </mat-expansion-panel-header>
-            <mat-form-field class="mat-form-field" style="width: 864px;">
+            <mat-form-field appearance="outline" class="mat-form-field" style="width: 864px;">
                 <mat-label>Catalog Node</mat-label>
                 <input matInput [matAutocomplete]="node" [formControl]="surfaceCatalogNodeFormControl" />
                 <mat-autocomplete autoActiveFirstOption #node>
@@ -24,24 +24,24 @@
                 </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="mat-form-field" style="width: 864px;">
+            <mat-form-field appearance="outline" class="mat-form-field" style="width: 864px;">
                 <mat-label>Description</mat-label>
                 <textarea matInput [formControl]="surfaceDescriptionFormControl">
                 </textarea>
             </mat-form-field>
 
             <section>
-                <mat-form-field class="mat-form-field">
+                <mat-form-field appearance="outline" class="mat-form-field">
                     <mat-label>Product number</mat-label>
                     <input matInput [formControl]="surfaceProductNumberFormControl">
                 </mat-form-field>
 
-                <mat-form-field class="mat-form-field">
+                <mat-form-field appearance="outline" class="mat-form-field">
                     <mat-label>Serial</mat-label>
                     <input matInput [formControl]="surfaceSerialFormControl">
                 </mat-form-field>
 
-                <mat-form-field class="mat-form-field">
+                <mat-form-field appearance="outline" class="mat-form-field">
                     <mat-label>Quantity</mat-label>
                     <input matInput [formControl]="surfaceQuantityFormControl">
                 </mat-form-field>

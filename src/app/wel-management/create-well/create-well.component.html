@@ -15,7 +15,7 @@
         </div>
       </mat-expansion-panel-header>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline" class="mat-form-field" >
         <mat-label>Well Name</mat-label>
         <input matInput [matAutocomplete]="well" [formControl]="wellFormControl" />
         <mat-autocomplete autoActiveFirstOption #well>
@@ -26,7 +26,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field" >
         <mat-label>Well Type</mat-label>
         <mat-select [formControl]="wellTypeFormControl" >
           <mat-option *ngFor="let wellTypeItem of wellTypeList" [value]="wellTypeItem.name"
@@ -36,7 +36,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field" style="width: 430px;">
+      <mat-form-field appearance="outline"  class="mat-form-field" style="width: 430px;">
         <mat-label>Corporate Customer</mat-label>
         <input matInput [matAutocomplete]="customer" [formControl]="customerFormControl" />
         <mat-autocomplete autoActiveFirstOption #customer>
@@ -47,7 +47,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field" style="width: 430px;">
+      <mat-form-field appearance="outline"  class="mat-form-field" style="width: 430px;">
         <mat-label>Sales Account</mat-label>
         <input matInput [matAutocomplete]="account" [formControl]="accountFormControl" />
         <mat-autocomplete autoActiveFirstOption #account>
@@ -58,7 +58,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field" >
         <mat-label>Basin</mat-label>
         <mat-select [formControl]="basinFormControl">
           <mat-option *ngFor="let basinItem of basinList"  [value]="basinItem.name"
@@ -68,7 +68,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>GeoUnits</mat-label>
         <mat-select [formControl]="geoUnitFormControl">
           <mat-option *ngFor="let geoItem of geoUnitList" [value]="geoItem.name"
@@ -78,7 +78,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Mgt Country</mat-label>
         <mat-select [formControl]="countryFormControl">
           <mat-option *ngFor="let countryItem of mgtCountryList" [value]="countryItem.name"
@@ -88,7 +88,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Field</mat-label>
         <input matInput [matAutocomplete]="field" [formControl]="fieldFormControl" />
         <mat-autocomplete autoActiveFirstOption #field>
@@ -99,7 +99,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Enviroment</mat-label>
         <mat-select [formControl]="enviromentFormControl">
           <mat-option *ngFor="let enviromentItem of enviromentList" [value]="enviromentItem.name"
@@ -128,12 +128,12 @@
         </div>
       </mat-expansion-panel-header>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Water Depth</mat-label>
         <input matInput [formControl]="waterDepthFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field" style="width: 435px;">
+      <mat-form-field appearance="outline"  class="mat-form-field" style="width: 435px;">
         <mat-label>Max Deviation</mat-label>
         <mat-select [formControl]="maxDeviationFormControl">
           <mat-option *ngFor="let maxDeviationItem of maxDeviationList" [value]="maxDeviationItem.name"
@@ -143,27 +143,27 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>MD Measured from</mat-label>
         <input matInput [formControl]="mdMeasuredFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>TVD Measured from</mat-label>
         <input matInput [formControl]="tvdMeasuredFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>MD distance</mat-label>
         <input matInput [formControl]="mdDistanceFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>TVD distance</mat-label>
         <input matInput [formControl]="tvdDistanceFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>MD units</mat-label>
         <mat-select [formControl]="mdUnitsFormControl">
           <mat-option *ngFor="let mdUnitItem of mdUnitList" [value]="mdUnitItem.name"
@@ -173,7 +173,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>TVD units</mat-label>
         <mat-select [formControl]="tvdUnitsFormControl">
           <mat-option *ngFor="let tvdUnitItem of tvdUnitList" [value]="tvdUnitItem.name"
@@ -183,7 +183,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Upper Completion</mat-label>
         <mat-select [formControl]="upperCompletionFormControl">
           <mat-option *ngFor="let upperItem of upperCompletionList" [value]="upperItem.name"
@@ -193,7 +193,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Artificial Lift</mat-label>
         <mat-select [formControl]="artificalLiftFormControl">
           <mat-option *ngFor="let liftItem of artificialLiftList" [value]="liftItem.name"
@@ -203,7 +203,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Multi-Lateral</mat-label>
         <mat-select [formControl]="multiLateralFormControl">
           <mat-option *ngFor="let lateralItem of multiLateralList" [value]="lateralItem.name"
@@ -213,7 +213,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Liner Hanger System</mat-label>
         <mat-select [formControl]="linerHangerFormControl">
           <mat-option *ngFor="let linerItem of linerHangerSystemList" [value]="linerItem.name"
@@ -223,7 +223,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Multi-Stage Simulation</mat-label>
         <mat-select [formControl]="multiStageFormControl">
           <mat-option *ngFor="let simulationItem of multiStageSimulationList" [value]="simulationItem.name"
@@ -251,12 +251,12 @@
         </div>
       </mat-expansion-panel-header>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label># String</mat-label>
         <input matInput [formControl]="stringNumberFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>String type</mat-label>
         <mat-select [formControl]="stringTypeFormControl">
           <mat-option *ngFor="let stringTypeItem of stringTypeList" [value]="stringTypeItem.name"
@@ -266,17 +266,17 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Size</mat-label>
         <input matInput [formControl]="stemSizeFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Weight</mat-label>
         <input matInput [formControl]="stemWeightFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Threads</mat-label>
         <mat-select [formControl]="stemThreadFormControl">
           <mat-option *ngFor="let threadItem of threadList" [value]="threadItem.name"
@@ -286,7 +286,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Material</mat-label>
         <mat-select [formControl]="stemMaterialFormControl">
           <mat-option *ngFor="let materialItem of materialList" [value]="materialItem.name"
@@ -296,12 +296,12 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>MD Top</mat-label>
         <input matInput [formControl]="stemMDTopFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>MD Bottom</mat-label>
         <input matInput [formControl]="stemMDBottomFormControl">
       </mat-form-field>
@@ -339,7 +339,7 @@
       </section>
 
       <section style="margin-bottom: 2%;">
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Completion pulled date</mat-label>
           <input matInput [matDatepicker]="picker">
           <mat-hint>MM/DD/YYYY</mat-hint>
@@ -347,7 +347,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Reason</mat-label>
           <mat-select [formControl]="pulledReasonFormControl">
             <mat-option *ngFor="let reasonItem of completionPulledReasonList" [value]="reasonItem.name">
@@ -357,7 +357,7 @@
         </mat-form-field>
       </section>
 
-      <mat-form-field class="mat-form-field" style="margin-bottom: 2%;">
+      <mat-form-field appearance="outline"  class="mat-form-field" style="margin-bottom: 2%;">
         <mat-label>Equipment last validated</mat-label>
         <input matInput [matDatepicker]="picker2">
         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -384,12 +384,12 @@
         </div>
       </mat-expansion-panel-header>    
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Completion #</mat-label>
         <input matInput [formControl]="completionNumberFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Type</mat-label>
         <mat-select [formControl]="completionTypeFormControl">
           <mat-option *ngFor="let completionTypeItem of completionTypeList" [value]="completionTypeItem.name"
@@ -399,7 +399,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Produced Fluid</mat-label>
         <mat-select [formControl]="producedFluidTypeFormControl">
           <mat-option *ngFor="let producedFluidItem of producedFluidList" [value]="producedFluidItem.name"
@@ -409,7 +409,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Injected Fluid</mat-label>
         <mat-select [formControl]="injectedfluidTypeFormControl">
           <mat-option *ngFor="let injectedFluidItem of injectedFluidList" [value]="injectedFluidItem.name"
@@ -419,7 +419,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Completion Class</mat-label>
         <mat-select [formControl]="completionClassFormControl">
           <mat-option *ngFor="let completionClassItem of completionClassList" [value]="completionClassItem.name"
@@ -429,7 +429,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Sand Control</mat-label>
         <mat-select [formControl]="sandControlFormControl">
           <mat-option *ngFor="let sandControlItem of sandControlType" [value]="sandControlItem.name"
@@ -439,7 +439,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Reservoir Rock Type</mat-label>
         <mat-select [formControl]="rockTypeFormControl">
           <mat-option *ngFor="let rockTypeItem of rockTypeList" [value]="rockTypeItem.name"
@@ -449,17 +449,17 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Reservoir Temperature</mat-label>
         <input matInput [formControl]="reservoirTempFormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Corrosive Comp CCO2</mat-label>
         <input matInput [formControl]="corrosiveCCO2FormControl">
       </mat-form-field>
 
-      <mat-form-field class="mat-form-field">
+      <mat-form-field appearance="outline"  class="mat-form-field">
         <mat-label>Corrosive Comp H25</mat-label>
         <input matInput [formControl]="corrosiveH25FormControl">
       </mat-form-field>
@@ -487,7 +487,7 @@
           </div>
         </mat-expansion-panel-header>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Pumping Company</mat-label>
           <mat-select>
             <mat-option *ngFor="let pumpingCompanyItem of pumpingCompanyList" [value]="pumpingCompanyItem.name">
@@ -496,7 +496,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Tools Company</mat-label>
           <mat-select>
             <mat-option *ngFor="let toolsCompanyItem of toolsCompanyList" [value]="toolsCompanyItem.name">
@@ -505,7 +505,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Screen Provider</mat-label>
           <mat-select>
             <mat-option *ngFor="let screenProviderItem of screenProviderList" [value]="screenProviderItem.name">
@@ -514,7 +514,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Fluid Type</mat-label>
           <mat-select>
             <mat-option *ngFor="let fluidTypeItem of fluidTypeList" [value]="fluidTypeItem.name">
@@ -523,7 +523,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline" >
           <mat-label>Design Pump Rate</mat-label>
           <input matInput />
         </mat-form-field>
@@ -547,7 +547,7 @@
           </div>
         </mat-expansion-panel-header>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Tools Type</mat-label>
           <mat-select>
             <mat-option *ngFor="let toolsTypeItem of toolsTypeList" [value]="toolsTypeItem.name">
@@ -556,22 +556,22 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Packer Bore Size</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Differential</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Base Pipe OD</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Filter Type</mat-label>
           <mat-select>
             <mat-option *ngFor="let filterTypeItem of filterTypeList" [value]="filterTypeItem.name">
@@ -599,22 +599,22 @@
           </div>
         </mat-expansion-panel-header>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Passive ICD</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Autonomuous ICD</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Adaptative ICD</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>APS - Tube Type</mat-label>
           <mat-select>
             <mat-option *ngFor="let tubeTypeItem of tubeTypeList" [value]="tubeTypeItem.name">
@@ -623,22 +623,22 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>APS - #Tubes</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>Drilling Fluid</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>OH Screen Running Fluid</mat-label>
           <input matInput />
         </mat-form-field>
 
-        <mat-form-field class="mat-form-field">
+        <mat-form-field appearance="outline"  class="mat-form-field">
           <mat-label>CH Screen Running Fluid</mat-label>
           <input matInput />
         </mat-form-field>
